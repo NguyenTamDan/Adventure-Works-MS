@@ -1,0 +1,35 @@
+-- Cleansed DIM_Customers Table --
+SELECT [CustomerKey]
+      --,[GeographyKey]
+      --,[CustomerAlternateKey]
+      --,[Title]
+      ,[FirstName]
+      --,[MiddleName]
+      ,[LastName]
+      --,[NameStyle]
+	  , [FirstName] + ' ' + [LastName] as [Fullname]
+      ,[BirthDate]
+      --,[MaritalStatus]
+      --,[Suffix]
+      ,case [Gender] when 'M' then 'Male' when 'F' then 'Female' end as Gender
+      --,[EmailAddress]
+      --,[YearlyIncome]
+      --,[TotalChildren]
+      --,[NumberChildrenAtHome]
+      --,[EnglishEducation]
+      --,[SpanishEducation]
+      --,[FrenchEducation]
+      --,[EnglishOccupation]
+      --,[SpanishOccupation]
+      --,[FrenchOccupation]
+      --,[HouseOwnerFlag]
+      --,[NumberCarsOwned]
+      --,[AddressLine1]
+      --,[AddressLine2]
+      --,[Phone]
+      ,[DateFirstPurchase]
+      --,[CommuteDistance]
+	  , g.City as CustomerCity
+  FROM [AdventureWorksDW2019].[dbo].[DimCustomer] as c
+  left join dbo.DimGeography as g on c.GeographyKey = g.GeographyKey
+  order by CustomerKey
